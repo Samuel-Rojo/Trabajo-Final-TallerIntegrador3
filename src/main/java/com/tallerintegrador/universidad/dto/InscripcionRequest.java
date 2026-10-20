@@ -4,5 +4,5 @@ import jakarta.validation.constraints.NotNull;
 
 public record InscripcionRequest(
         @NotNull Long alumnoId,
-        @NotNull Long cursoId,
-        @NotNull Long cicloLectivoId) {}
+        @NotNull Long cursoId
+       ) {}
