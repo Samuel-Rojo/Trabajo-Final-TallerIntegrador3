@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "inscripciones")
+@Table(name = "Inscripcion")
 public class Inscripcion {
 
     public enum EstadoInscripcion { ACTIVA, ANULADA }

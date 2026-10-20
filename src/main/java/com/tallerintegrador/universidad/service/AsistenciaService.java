@@ -28,7 +28,7 @@ public class AsistenciaService {
     private final CursoRepository cursoRepository;// de tus compañeros
     private final CursoMateriaRepository cursoMateriaRepository; // de tus compañeros (nombre a confirmar)
 
-    // RF41: registra la asistencia de todo un curso en una fecha (todo o nada)
+    // RF41: registra la asistencia de un curso en una fecha
     @Transactional
     public List<AsistenciaDTO> registrar(AsistenciaCursoRequest req) {
         Curso curso = cursoRepository.findById(req.cursoId())
@@ -74,7 +74,7 @@ public class AsistenciaService {
                 .stream().map(this::aDTO).toList();
     }
 
-    // RF43: solo PRESENTE cuenta como asistencia (agregar TARDANZA/JUSTIFICADO si la consigna lo pide)
+    // RF43: solo PRESENTE cuenta como asistencia
     @Transactional(readOnly = true)
     public ResumenAsistencia resumen(Long alumnoId) {
         Alumno alumno = buscarAlumno(alumnoId);

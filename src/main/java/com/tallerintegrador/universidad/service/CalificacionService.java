@@ -22,7 +22,6 @@ public class CalificacionService {
     private final InscripcionRepository inscripcionRepository;
     private final EvaluacionRepository evaluacionRepository;
     private final AlumnoRepository alumnoRepository;
-    // ya no hay ningún repository de docente
 
     // RF38
     @Transactional
@@ -32,7 +31,7 @@ public class CalificacionService {
         Evaluacion evaluacion = evaluacionRepository.findById(req.evaluacionId())
                 .orElseThrow(() -> new RecursoNoEncontradoException("evaluación", req.evaluacionId()));
 
-        // RN12: se LLAMA al método de abajo
+        // RN12
         verificarDocente(req.docenteId(), evaluacion.getCursoMateria());
 
         // RN14
@@ -70,12 +69,12 @@ public class CalificacionService {
         verificarDocente(req.docenteId(), calificacion.getEvaluacion().getCursoMateria());
 
         calificacion.setNota(req.nota());
-        calificacion.setObservacion(req.observaciones());
+        calificacion.setObservacion(req.observacion());
         if (!calificacion.esNotaValida()) {
             throw new ReglaNegocioException("La nota debe estar entre 1 y 10");
         }
         return aDTO(calificacion);
-    }   // <-- acá termina modificar
+    }
 
     // RF40
     @Transactional(readOnly = true)
